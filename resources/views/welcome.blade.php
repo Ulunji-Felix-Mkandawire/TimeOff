@@ -7,11 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         @vite('resources/css/app.css')
-        <title>Time Off</title>
+        <title>TimeOff</title>
     </head>
 
     <body>
-        <h2 class="text-center">Time Off management system</h2>
+        <h2 class="text-center">TimeOff management system</h2>
     </body>
 
 </html>
