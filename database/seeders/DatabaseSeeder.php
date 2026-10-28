@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
             Employee::factory()->count(5)->create([
                 'department_id' => $department->id,
                 // manager[$i] = employee id whose id matches the current index
+                // The employees who are managers have null on their manager column
+                // Because at the point of creation, there's no employee whose id matches the index
                 'manager_id' => $managers[$i]->id
             ]);
         }
