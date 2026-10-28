@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $departments = collect([
             'Engineering',
             'Finance',
-            'Human Resource',
+            'Human Resources',
             'Sales',
             'Operations'
         ])->map( fn($name) => Department::create([

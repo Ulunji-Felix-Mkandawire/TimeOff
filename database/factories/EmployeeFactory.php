@@ -19,7 +19,7 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->firstName() . ' ' . fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'department_id' => Department::factory(),
             'manager_id' => null,
