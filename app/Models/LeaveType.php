@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LeaveType extends Model
 {
@@ -14,4 +15,9 @@ class LeaveType extends Model
         'name',
         'default_days_per_year'
     ];
+
+    public function leaveRequest(): HasMany
+    {
+        return $this->hasMany(LeaveRequest::class);
+    }
 }
