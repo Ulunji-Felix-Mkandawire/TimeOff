@@ -28,8 +28,8 @@ class LeaveRequestFactory extends Factory
         return [
             'employee_id' => Employee::factory(),
             'leave_type_id' => LeaveType::factory(),
-            'start' => $start,
-            'end' => $end,
+            'start_date' => $start,
+            'end_date' => $end,
             'status' => LeaveStatus::Pending,
             'reason' => fake()->optional(0.5)->sentence(),
         ];

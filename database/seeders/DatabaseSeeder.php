@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Annual', 'default_days_per_year' => 21],
             ['name' => 'Sick', 'default_days_per_year' => 10],
             ['name' => 'Study', 'default_days_per_year' => 5],
-        ])->map(fn ($type) => LeaveType::creat($type));
+        ])->map(fn ($type) => LeaveType::create($type));
 
         // Create between 1 - 3 Requests for each employee
         foreach (Employee::all() as $employee) {
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
                 // Assign random leave status to employees with manager id
                 // Employees without manager id, should have status as Pending
 
-                $status = $employee->manager->id ? fake()->randomElement(LeaveStatus::cases()) : LeaveStatus::Pending;
+                $status = $employee->manager_id ? fake()->randomElement(LeaveStatus::cases()) : LeaveStatus::Pending;
 
                 // Determine if the status is either rejected or approved by comparing it to the default
                 // Returns true or false
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
                     'employee_id' => $employee->id,
                     'leave_type_id' => $leaveTypes->random()->id,
                     'status' => $status,
-                    'decided_by' => $decided ? $employee->manager->id : null,
+                    'decided_by' => $decided ? $employee->manager_id : null,
                     'decided_at' => $decided ? now() : null,
                 ]);
             }
