@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\LeaveStatus;
+use Database\Factories\LeaveRequestFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LeaveRequest extends Model
 {
-    /** @use HasFactory<\Database\Factories\LeaveRequestFactory> */
+    /** @use HasFactory<LeaveRequestFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -32,7 +33,6 @@ class LeaveRequest extends Model
             'decided_at' => 'datetime',
         ];
     }
-
 
     // One employee has many requests: Annual, pto, etc
     // Therefore many requests (of same or various types) belongs to an employee

@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use Database\Factories\LeaveTypeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LeaveType extends Model
 {
-    /** @use HasFactory<\Database\Factories\LeaveTypeFactory> */
+    /** @use HasFactory<LeaveTypeFactory> */
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'default_days_per_year'
+        'default_days_per_year',
     ];
 
     public function leaveRequest(): HasMany

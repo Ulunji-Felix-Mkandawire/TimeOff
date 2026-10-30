@@ -23,7 +23,7 @@ class LeaveRequestFactory extends Factory
         $start = fake()->dateTimeBetween('-3 months', '+2 months');
 
         // copy start date, and modify the value that starts with '+'
-        $end = (clone $start)->modify('+' . fake()->numberBetween(0, 4) . 'days');
+        $end = (clone $start)->modify('+'.fake()->numberBetween(0, 4).'days');
 
         return [
             'employee_id' => Employee::factory(),

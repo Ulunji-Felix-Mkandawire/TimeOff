@@ -71,9 +71,9 @@ class DatabaseSeeder extends Seeder
         ])->map(fn ($type) => LeaveType::creat($type));
 
         // Create between 1 - 3 Requests for each employee
-        foreach( Employee::all() as $employee ){
+        foreach (Employee::all() as $employee) {
             // decide range between 1- 3 for each current employee instance
-            foreach( range(1, fake()->randomNumber(1,3)) as $i){
+            foreach (range(1, fake()->randomNumber(1, 3)) as $i) {
                 // Check if the employee has a manager id
                 // Assign random leave status to employees with manager id
                 // Employees without manager id, should have status as Pending
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
                     'leave_type_id' => $leaveTypes->random()->id,
                     'status' => $status,
                     'decided_by' => $decided ? $employee->manager->id : null,
-                    'decided_at' => $decided ? now() : null
+                    'decided_at' => $decided ? now() : null,
                 ]);
             }
         }
