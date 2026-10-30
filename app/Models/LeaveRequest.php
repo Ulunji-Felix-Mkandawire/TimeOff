@@ -45,7 +45,7 @@ class LeaveRequest extends Model
     // Therefore each request belongs to at least one kind of leave (pto, annual, sick)
     public function leaveType(): BelongsTo
     {
-        return $this->belongdTo(LeaveType::class);
+        return $this->belongsTo(LeaveType::class);
     }
 
     // Manager has many requests to decide

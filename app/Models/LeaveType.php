@@ -17,7 +17,7 @@ class LeaveType extends Model
         'default_days_per_year',
     ];
 
-    public function leaveRequest(): HasMany
+    public function leaveRequests(): HasMany
     {
         return $this->hasMany(LeaveRequest::class);
     }
