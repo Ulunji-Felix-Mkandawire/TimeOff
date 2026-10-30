@@ -95,6 +95,25 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+        
+        // Seed balances
+
+        // Set year to current year
+        $year = now()->year;
+
+        // Assign each employee default leave balance
+
+        foreach (Employee::all() as $employee){
+            // Get all leave types from the leaveTypes collection defined above
+            foreach($leaveTypes as $type ){
+                // For each leave type, determined by the id, assign the year and days allowed
+                // The employee has many leave types define the belongsToMany relation
+                $employee->leaveTypes()->attach($type->id, [
+                    'year' => $year,
+                    'days_allowed' => $type->default_days_per_year,
+                ]);
+            }
+        }
 
     }
 }
