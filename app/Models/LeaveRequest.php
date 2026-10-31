@@ -52,6 +52,6 @@ class LeaveRequest extends Model
     // Each request belongs to a manager, who also already has other requests
     public function decidedBy(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'decided_by');
+        return $this->belongsTo(Employee::class, 'decided_by')->withTrashed();
     }
 }
