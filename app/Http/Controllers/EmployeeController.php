@@ -32,7 +32,7 @@ class EmployeeController extends Controller
 
         return view('employees.create', [
             'departments' => Department::orderBy('name')->get(),
-            'managers' => Employee::orderBy('name')->get(),
+            'managers' => Employee::orderBy('name')->whereNull('manager_id')->get(),
         ]);
     }
 
