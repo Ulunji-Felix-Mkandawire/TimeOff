@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Models\Department;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -11,7 +14,13 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        // Get all employees & eager load managers and departments
+        
+        $employees = Employee::with(['department', 'manager'])
+            ->orderBy('name')
+            ->paginate(10);
+
+        return view('employees.index', compact('employees'));
     }
 
     /**
@@ -19,15 +28,22 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        // Return create view, departments, and managers
+
+        return view('employees.create', [
+            'departments' => Department::orderBy('name')->get(),
+            'managers' => Employee::orderBy('name')->get(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
-        //
+        Employee::create($request->validated());
+
+        return redirect()->route('employees.index')->with('success', 'Employee added');
     }
 
     /**
