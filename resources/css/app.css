@@ -5,6 +5,42 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* 1. Define manual class-based dark mode variant (replaces darkMode: 'class') */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-sans: "Google Sans Flex", sans-serif;
+
+    /* Main dashboard background - slightly deeper */
+    --color-main-background: #090D16;
+
+    /* Cards, sidebar, panels - softer contrast against background */
+    --color-surface: #111827;
+
+    /* Buttons, links, active navigation - slightly deeper blue */
+    --color-primary-blue: #2563EB;
+
+    /* Highlights, charts, progress - richer cyan */
+    --color-accent-cyan: #06B6D4;
+
+    /* Headings and body text - off-white to prevent glare */
+    --color-main-text: #E2E8F0;
+
+    /* Descriptions and secondary labels - softer gray */
+    --color-muted-text: #64748B;
+
+    /* Card borders and dividers - subtle and muted */
+    --color-divider: #1E293B;
+
+    /* Hover states and selected rows - subtle tint */
+    --color-hover: #1E293B;
+
+    /* Success - adjusted for dark backgrounds */
+    --color-success: #22C55E;
+
+    /* Warning - adjusted for dark backgrounds */
+    --color-warning: #F59E0B;
+
+    /* Error - adjusted for dark backgrounds */
+    --color-error: #EF4444;
 }
