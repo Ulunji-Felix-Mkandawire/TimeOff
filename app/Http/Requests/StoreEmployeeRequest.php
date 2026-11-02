@@ -29,7 +29,7 @@ class StoreEmployeeRequest extends FormRequest
             'department_id' => ['required', 'exists:departments,id'],
             // Can have no manager but if is to have manager, make sure that manager is not deleted
             // Hence the deleted_at column must be null
-            'manager_id' => ['nullable', Rule::exists('employees', 'id')->whereNull('deleted_at')]
+            'manager_id' => ['nullable', Rule::exists('employees', 'id')->whereNull('deleted_at')->whereNull('manager_id')]
         ];
     }
 }
