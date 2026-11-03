@@ -6,6 +6,12 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="px-32 py-2.5">
+            <p class="text-red-500 text-sm">{{ session('error') }}</p>
+        </div>
+    @endif
+
     <div class="bg-white shadow-sm border border-gray-200 rounded-xl overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-gray-600 text-sm text-left">
@@ -16,6 +22,9 @@
                         <th scope="col" class="px-6 py-4">Email</th>
                         <th scope="col" class="px-6 py-4">Department</th>
                         <th scope="col" class="px-6 py-4">Manager</th>
+                        <th scope="col" class="px-6 py-4">
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -53,10 +62,32 @@
                                     <span class="text-gray-400">—</span>
                                 @endif
                             </td>
+
+                            <!-- Actions Column -->
+                            <td class="px-6 py-4 font-medium text-sm text-right whitespace-nowrap">
+                                <div class="flex justify-end items-center gap-3">
+                                    <!-- Edit Link -->
+                                    <a href="{{ route('employees.edit', $employee) }}"
+                                        class="text-indigo-600 hover:text-indigo-900 transition-colors">
+                                        Edit
+                                    </a>
+
+                                    <!-- Offboard / Delete Form -->
+                                    <form method="POST" action="{{ route('employees.destroy', $employee) }}"
+                                        onsubmit="return confirm('Offboard {{ $employee->name }}?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-transparent p-0 border-none text-red-600 hover:text-red-900 transition-colors cursor-pointer">
+                                            Offboard
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-12 text-gray-500 text-center">
+                            <td colspan="5" class="px-6 py-12 text-gray-500 text-center">
                                 <div class="flex flex-col justify-center items-center mx-auto max-w-xs">
                                     <svg class="mb-3 w-10 h-10 text-gray-300" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
